@@ -10,10 +10,11 @@ HTTPServer::HTTPServer(
     HTTPRequestHandlerFactoryPtr factory_,
     Poco::ThreadPool & thread_pool,
     Poco::Net::ServerSocket & socket_,
-    Poco::Net::HTTPServerParams::Ptr params,
+    Poco::Net::HTTPServerParams::Ptr http1_params,
+    HTTP2ServerParams::Ptr http2_params,
     const ProfileEvents::Event & read_event,
     const ProfileEvents::Event & write_event)
-    : TCPServer(new HTTPServerConnectionFactory(context, params, factory_, read_event, write_event), thread_pool, socket_, params), factory(factory_)
+    : TCPServer(new HTTPServerConnectionFactory(context, http1_params, http2_params, factory_, read_event, write_event), thread_pool, socket_), factory(factory_)
 {
 }
 
