@@ -32,6 +32,12 @@ public:
         poco_check_ptr(stream);
         return *stream;
     }
+    
+    /// Sets a custom stream for the request body (used for HTTP/2)
+    void setStream(ReadBuffer * stream_)
+    {
+        stream.reset(stream_);
+    }
 
     bool checkPeerConnected() const;
 
